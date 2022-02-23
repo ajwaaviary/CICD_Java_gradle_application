@@ -28,7 +28,7 @@ stage ("docker build & docker push"){
              steps{
                  script{
                      withCredentials([string(credentialsId: 'nexus', variable: 'nexus-pwd')]) {
-                        
+                        sh '''
                             docker build -t 35.88.209.60:8083/springapp:${VERSION} .
                             docker login -u admin -p $nexus-pwd 35.88.209.60:8083
                             docker push 35.88.209.60:8083/springapp:${VERSION}
