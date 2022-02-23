@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment{
+        VERSION  = "${env.BUILD_ID}"
+    }
     stages{
         stage("sonar quality check") {
             agent {
@@ -23,5 +26,20 @@ pipeline{
                 }
             }
         }
+         stage ("docker build & docker push"){
+             steps{
+                 script{
+                     withCredentials([string(credentialsId: 'nexus-password', variable: 'nexus-credentials ')]) {
+                           sh '''
+                            docker build -t 35.88.209.60:8083/springapp:${VERSION} .
+                            docker push -u admin -p $nexus-credentials 35.88.209.60:8083
+                            docker rmi 35.88.209.60:8083/springapp:${VERSION}
+
+                           '''
+
+                    }
+                 }
+             }
+         }
     }
-}         
+}       
