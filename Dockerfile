@@ -2,6 +2,7 @@ FROM openjdk:11 as base
 WORKDIR /app
 COPY . .
 RUN ./gradlew build 
+chmod +x gradlew
 
 FROM tomcat:9
 WORKDIR /webpaps
