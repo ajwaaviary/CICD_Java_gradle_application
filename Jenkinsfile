@@ -32,10 +32,10 @@ stage ("docker build & docker push"){
                  script{
                      withCredentials([string(credentialsId: 'nexus', variable: 'nexus-pwd')]) {
                         sh '''
-                            docker build -t 54.185.115.104/springapp:${VERSION} .
+                            docker build -t 54.185.115.104:8083/springapp:${VERSION} .
                             docker login -u admin -p admin 54.185.115.104:8083
-                            docker push 54.185.115.104/springapp:${VERSION}
-                            docker rmi 54.185.115.104/springapp:${VERSION}
+                            docker push 54.185.115.104:8083/springapp:${VERSION}
+                            docker rmi 54.185.115.104:8083/springapp:${VERSION}
                            '''
                     }
                  }
