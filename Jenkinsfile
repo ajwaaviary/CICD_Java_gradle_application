@@ -50,7 +50,8 @@ pipeline{
                              helmversion=$( helm show chart myapp | grep version | cut -d: -f 2 | tr -d ' ')
                              tar -czvf  myapp-${helmversion}.tgz myapp/
                              curl -u admin:admin //http://54.185.115.104:8081/repository/helm-repo/ --upload-file myapp-${helmversion}.tgz -v
-                           '''
+                            '''
+                         }   
                     }
                  }
              }
