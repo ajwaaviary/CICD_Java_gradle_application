@@ -11,5 +11,3 @@ code is integrated with sonarqube plugin which help us in static code analysis
 ``` ./gradlew sonarqube ```
 
 added test content
-
-add finall content 
