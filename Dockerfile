@@ -4,6 +4,7 @@ COPY . .
 RUN chmod +x gradlew
 RUN ./gradlew build 
 
+
 FROM tomcat:9
 WORKDIR /webpaps
 COPY --from=base /app/build/libs/sampleWeb-0.0.1-SNAPSHOT.war .
